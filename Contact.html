@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Orovie Hospitality Institute</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #b8926a; 
+            --bg: #fdfcfb;     
+            --ink: #1a1a1a;    
+            --muted: #7a7a7a;
+            --white: #ffffff;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000;
+            background: rgba(253, 252, 251, 0.95);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-family: 'Cormorant Garamond'; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--ink); z-index: 2100; }
+        
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--ink); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-luxury-nav { 
+            text-decoration: none; color: var(--ink); font-size: 0.75rem; font-weight: 600; 
+            border: 1px solid var(--ink); padding: 10px 20px; transition: 0.3s;
+        }
+        .btn-luxury-nav:hover { background: var(--ink); color: var(--white); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2100;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--ink);
+            transition: var(--transition);
+        }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            padding: 200px 5% 100px;
+            text-align: center;
+            background: #f9f7f5;
+        }
+        .header-subtitle { text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+        .header-title { font-size: clamp(3rem, 5vw, 5rem); margin-top: 10px; }
+
+        /* --- CONTACT SECTION --- */
+        .contact-wrapper {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h3 { font-size: 1.8rem; margin-top: 40px; margin-bottom: 20px; }
+        .contact-info p { color: var(--muted); margin-bottom: 15px; font-size: 1rem; }
+        .contact-item { margin-bottom: 40px; }
+        .contact-item i { color: var(--accent); font-size: 1.2rem; margin-right: 15px; }
+
+        /* --- FORM STYLES --- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ink);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            background: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--ink);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(184, 146, 106, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            padding: 15px 40px;
+            background: var(--ink);
+            color: var(--white);
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        footer { padding: 60px 5%; background: #f4f1ee; text-align: center; }
+
+        /* --- MOBILE MENU --- */
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: var(--bg); flex-direction: column; justify-content: center;
+                align-items: center; gap: 40px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: 2000;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .btn-luxury-nav { display: none; }
+            
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Orovie Institute</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Mission.html">Mission</a></li>
+            <li><a href="Contact.html" style="color: var(--accent);">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="Contact.html" class="btn-luxury-nav">ENQUIRE</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <span class="header-subtitle" data-aos="fade-up">Get In Touch</span>
+        <h1 class="header-title" data-aos="fade-up" data-aos-delay="200">Contact Us</h1>
+    </header>
+
+        <section class="contact-wrapper">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Orovie Hospitality Institute</h2>
+                
+                <div class="contact-item">
+                    <h3><i class="fa-solid fa-map-marker-alt"></i> Office Address</h3>
+                    <p>3FPJ+RCF, Maitama, Abuja 904101<br>Federal Capital Territory, Nigeria</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fa-solid fa-phone"></i> Contact Line</h3>
+                    <p><a href="tel:+2348077773537" style="color: var(--ink); text-decoration: none;">+234 (0) 807 777 3537</a></p>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fa-solid fa-envelope"></i> Email</h3>
+                    <p><a href="mailto:info@oroviehospitality.com.ng" style="color: var(--ink); text-decoration: none;">info@oroviehospitality.com.ng</a></p>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fa-solid fa-clock"></i> Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 5:00 PM (WAT)</p>
+                </div>
+            </div>
+
+            <form class="contact-form" data-aos="fade-left">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Send Enquiry</button>
+            </form>
+        </section>
+
+
+    <footer>
+        <p>&copy; 2024 Orovie Hospitality Institute. Excellence Refined.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'initial';
+            });
+        });
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your enquiry. We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

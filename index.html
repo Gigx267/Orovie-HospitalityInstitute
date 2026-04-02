@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHIS | Orovie Hospitality Institute — Excellence Refined</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png" sizes="32x32">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #b8926a; 
+            --accent-dark: #9b6e48;
+            --bg: #fdfcfb;     
+            --ink: #1a1a1a;    
+            --muted: #7a7a7a;
+            --white: #ffffff;
+            --light-beige: #faf8f5;
+            --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 40px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 20px 5%;
+            background: rgba(253, 252, 251, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo { font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--ink); flex: 1; font-weight: 500; }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* --- HERO WITH BACKGROUND IMAGE --- */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 5% 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-image: linear-gradient(rgba(253, 252, 251, 0.88), rgba(253, 252, 251, 0.88)), 
+                              url('https://i.pinimg.com/736x/83/6a/63/836a632b8e5392d67f7adb88d1dbdc6f.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            line-height: 0.85;
+            margin-bottom: 30px;
+            color: var(--ink);
+        }
+
+        .italic-serif { font-style: italic; display: block; }
+        .bold-serif { display: block; font-weight: 400; }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--ink);
+            max-width: 480px;
+            margin-bottom: 40px;
+            opacity: 0.85;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 75vh;
+        }
+
+        .image-reveal-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 400px 400px 0 0; 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 2s ease;
+        }
+
+        .hero-visual:hover img {
+            transform: scale(1.08);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: 40px;
+            left: -30px;
+            background: var(--white);
+            padding: 25px 35px;
+            font-family: 'Cormorant Garamond';
+            font-size: 1.4rem;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+            z-index: 5;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-luxury {
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .btn-luxury:hover { background: var(--ink); color: var(--white); }
+
+        .btn-luxury.dark {
+            background: var(--ink);
+            color: var(--white);
+        }
+        .btn-luxury.dark:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-text {
+            text-decoration: none;
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .btn-text:hover { border-bottom: 1px solid var(--accent); }
+
+        /* --- PATHWAYS SECTION --- */
+        .pathways {
+            padding: 120px 5%;
+            background: var(--light-beige);
+        }
+
+        .pathways-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 4vw, 3.8rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--ink);
+        }
+
+        .pathways-description {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .program-tags {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .program-tags span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pathways-gallery {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            height: 650px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item.main {
+            grid-column: 1 / 8;
+            grid-row: 1 / 9;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .gallery-item.secondary {
+            grid-column: 5 / 11;
+            grid-row: 5 / 11;
+            z-index: 2;
+            border: 15px solid var(--light-beige);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--ink);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-num {
+            display: block;
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond';
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 100px 5%;
+            background: var(--white);
+            position: relative;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            border-left: 1px solid rgba(184, 146, 106, 0.2);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            background: #faf9f8;
+            border-left: 1px solid var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* --- BARTENDING SPOTLIGHT (New Section) --- */
+        .bartending-spotlight {
+            padding: 120px 5%;
+            background: linear-gradient(135deg, #1e1b18 0%, #2a241f 100%);
+            color: var(--white);
+        }
+
+        .spotlight-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .spotlight-content .hero-subtitle {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .spotlight-content h2 {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .spotlight-content p {
+            color: #d4cdc4;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .spotlight-stats {
+            display: flex;
+            gap: 40px;
+            margin: 35px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            text-align: left;
+        }
+        .stat-badge .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond';
+            color: var(--accent);
+        }
+        .stat-badge .stat-caption {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #bcae97;
+        }
+
+        .btn-outline-accent {
+            display: inline-block;
+            padding: 14px 38px;
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .btn-outline-accent:hover {
+            background: var(--accent);
+            color: var(--ink);
+        }
+
+        .spotlight-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+        }
+        .spotlight-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s;
+        }
+        .spotlight-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* --- EDITORIAL SECTION --- */
+        .editorial { 
+            padding: 150px 10%; 
+            display: flex; 
+            gap: 100px; 
+            align-items: center; 
+            background: var(--bg); 
+        }
+        .editorial-image { flex: 1; }
+        .editorial-image img { width: 100%; height: 600px; object-fit: cover; border-radius: 8px; }
+        .editorial-content { flex: 1; }
+        .editorial-content span { color: var(--accent); letter-spacing: 4px; font-size: 0.8rem; font-weight: 600; }
+        .editorial-content h2 { font-size: 3.5rem; margin: 20px 0; line-height: 1.1; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1100px) {
+            .spotlight-container, .editorial { gap: 50px; }
+        }
+        @media (max-width: 992px) {
+            nav { padding: 20px 5%; background: var(--bg); }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                height: 100vh; width: 80%;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.5s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+                gap: 30px;
+            }
+            .nav-links.active { right: 0; }
+            nav .btn-luxury { display: none; }
+
+            .hero { padding-top: 120px; background-attachment: scroll; }
+            .hero-container { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { order: 2; text-align: center; }
+            .hero-visual { order: 1; height: 50vh; width: 90%; margin: 0 auto; }
+            .hero-description { margin: 0 auto 40px; }
+            .hero-actions { justify-content: center; flex-direction: column; gap: 20px; }
+            .floating-badge { left: 50%; transform: translateX(-50%); bottom: -20px; white-space: nowrap; }
+            
+            .pathways-container { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .pathways-gallery { height: 500px; }
+            .program-tags { justify-content: center; flex-wrap: wrap; }
+            
+            .features-grid { grid-template-columns: 1fr; gap: 20px; }
+            .feature-card { padding: 30px; border-left: none; border-bottom: 1px solid rgba(184, 146, 106, 0.2); }
+            
+            .spotlight-container { grid-template-columns: 1fr; text-align: center; }
+            .spotlight-stats { justify-content: center; }
+            .stat-badge { text-align: center; }
+            
+            .editorial { flex-direction: column; padding: 80px 5%; gap: 40px; text-align: center; }
+            .editorial-image img { height: 400px; }
+            .editorial-content h2 { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 550px) {
+            .pathways-gallery { height: 380px; }
+            .gallery-item.secondary { border-width: 8px; }
+            .stat-overlay { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">Orovie Hospitality Institute</a>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Bartending.html">Bartending</a></li>
+            <li><a href="Mission.html">Mission</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <span class="hero-subtitle">The Vanguard of Luxury Education</span>
+                <h1 class="hero-title">
+                    <span class="italic-serif">The Art of</span>
+                    <span class="bold-serif">Hospitality.</span>
+                </h1>
+                <p class="hero-description">
+                    Shaping the next generation of global leaders through rigorous tradition, 
+                    refined etiquette, and modern luxury management.
+                </p>
+                <div class="hero-actions">
+                    <a href="Courses.html" class="btn-luxury dark">Explore Programs</a>
+                    <a href="Mission.html" class="btn-text">Our Philosophy &rarr;</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual" data-aos="zoom-out-up" data-aos-delay="200">
+                <div class="image-reveal-wrapper">
+                    <img src="https://i.pinimg.com/736x/a4/d4/41/a4d441d7d0cdb9a02f94fa3e59e63e76.jpg" alt="Luxury Lobby">
+                </div>
+                <div class="floating-badge">Tradition & Luxury</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pathways / Academic Structure -->
+    <section class="pathways">
+        <div class="pathways-container">
+            <div class="pathways-content" data-aos="fade-up">
+                <span class="hero-subtitle">Your Future Defined</span>
+                <h2 class="section-title">Take The First Step To Learn With Us</h2>
+                <p class="pathways-description">
+                    Orovie Hospitality Institute offers programs leading to awards of <strong>certificate, diploma, and degree</strong>. 
+                    To achieve the programme objective, relevant courses are coordinated in sequential order. 
+                    A vital aspect of these programs is the opportunity provided for students to gain direct 
+                    practical experience during the period.
+                </p>
+                
+                <div class="program-tags">
+                    <span><i class="fa-solid fa-check"></i> Certificate</span>
+                    <span><i class="fa-solid fa-check"></i> Diploma</span>
+                    <span><i class="fa-solid fa-check"></i> Degree</span>
+                </div>
+                
+                <a href="Courses.html" class="btn-luxury">View Academic Calendar</a>
+            </div>
+
+            <div class="pathways-gallery">
+                <div class="gallery-item main" data-aos="reveal-right">
+                    <img src="https://i.pinimg.com/1200x/26/9d/41/269d414c1d45753fb3525a3cc32d83cd.jpg" alt="Culinary Excellence">
+                </div>
+                <div class="gallery-item secondary" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://i.pinimg.com/736x/54/d8/63/54d8634c1daa8154e6f47f288b5b0f6f.jpg" alt="Practical Training">
+                    <div class="stat-overlay">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Practical Placement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+                <div class="feature-title">Highly<br>Distinguished</div>
+                <p class="feature-text">
+                    Distinguished as one of the best Institutes in Nigeria with top-notch facilities. 
+                    We create memorable moments and organize with maximum perfection.
+                </p>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="feature-title">Quality<br>Education</div>
+                <p class="feature-text">
+                    We offer a complete spectrum of hospitality, protocol, and catering courses, 
+                    grooming students through elite finishing programs.
+                </p>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-icon"><i class="fa-solid fa-earth-africa"></i></div>
+                <div class="feature-title">Global<br>Partnership</div>
+                <p class="feature-text">
+                    Strategic associations and partnerships with the leading establishments 
+                    of the global hospitality industry, ensuring world-class opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARTENDING SPOTLIGHT - Dedicated Programme Section (Following Existing Design Language) -->
+    <section class="bartending-spotlight">
+        <div class="spotlight-container">
+            <div class="spotlight-content" data-aos="fade-right">
+                <span class="hero-subtitle">Dedicated Programme • 6 Weeks Intensive</span>
+                <h2>Master the Art of<br>Bartending & Mixology</h2>
+                <p>Professional bar skills, premium guest service, and operational discipline — all in one focused programme. From classic cocktails to advanced mixology, gain confidence behind the bar and step into premium hospitality roles.</p>
+                
+                <div class="spotlight-stats">
+                    <div class="stat-badge">
+                        <div class="stat-number">6</div>
+                        <div class="stat-caption">Weeks Intensive</div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="stat-number">240+</div>
+                        <div class="stat-caption">Guided Hours</div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-caption">Bartending Focus</div>
+                    </div>
+                </div>
+                
+                <a href="Bartending.html" class="btn-outline-accent">Explore Bartending Programme →</a>
+            </div>
+            <div class="spotlight-image" data-aos="fade-left" data-aos-delay="150">
+                <img src="https://i.pinimg.com/1200x/84/76/35/84763589656b61c7d529f9ef763066b5.jpg" alt="Professional Bartending & Mixology">
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial / Philosophy Section -->
+    <section class="editorial" id="about">
+        <div class="editorial-image" data-aos="fade-up">
+            <img src="https://i.pinimg.com/1200x/dd/44/d7/dd44d71e29b8817133c5d7438a02711e.jpg" alt="Student">
+        </div>
+        <div class="editorial-content" data-aos="fade-left">
+            <span>PHILOSOPHY</span>
+            <h2>Where Tradition Meets Modernity</h2>
+            <p>At Orovie, we believe hospitality is not a service, but a high art form. Our students are mentored by industry titans in an environment that demands excellence. Every course, from culinary arts to bartending, is crafted with the same pursuit of refinement.</p>
+            <br>
+            <a href="Mission.html" class="btn-text">Discover More &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer style="background: #f4f1ee; text-align: center; padding: 50px 5%; border-top: 1px solid rgba(0,0,0,0.05);">
+        <p style="color: #5a5a5a; font-size: 0.85rem;">&copy; 2025 Orovie Hospitality Institute. Excellence Refined.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+    </script>
+</body>
+</html>

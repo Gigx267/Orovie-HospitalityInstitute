@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Orovie Hospitality Institute</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #b8926a; 
+            --bg: #fdfcfb;     
+            --ink: #1a1a1a;    
+            --muted: #7a7a7a;
+            --white: #ffffff;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000;
+            background: rgba(253, 252, 251, 0.95);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-family: 'Cormorant Garamond'; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--ink); z-index: 2100; }
+        
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--ink); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-luxury-nav { 
+            text-decoration: none; color: var(--ink); font-size: 0.75rem; font-weight: 600; 
+            border: 1px solid var(--ink); padding: 10px 20px; transition: 0.3s;
+        }
+        .btn-luxury-nav:hover { background: var(--ink); color: var(--white); }
+
+        /* Hamburger Menu UI */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2100;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--ink);
+            transition: var(--transition);
+        }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            padding: 200px 5% 100px;
+            text-align: center;
+            background: #f9f7f5;
+        }
+        .header-subtitle { text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+        .header-title { font-size: clamp(3rem, 5vw, 5rem); margin-top: 10px; }
+
+        /* --- STORY SECTION --- */
+        .story-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .story-image img { width: 100%; height: 600px; object-fit: cover; border-radius: 300px 300px 0 0; }
+        .story-content h2 { font-size: 2.8rem; margin-bottom: 30px; line-height: 1.2; }
+        .story-content p { color: var(--muted); margin-bottom: 20px; font-size: 1.05rem; }
+
+        /* --- VALUES GRID --- */
+        .values-section {
+            padding: 100px 5%;
+            background: var(--ink);
+            color: var(--white);
+        }
+        .values-header { text-align: center; margin-bottom: 60px; }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .value-card { padding: 40px; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); }
+        .value-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .value-card i { color: var(--accent); font-size: 1.5rem; margin-bottom: 20px; display: block; }
+        .value-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .value-card p { color: #aaa; font-size: 0.9rem; }
+
+        /* --- PROGRAMS & POSSIBILITIES --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        .content-label { display: block; text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; color: var(--accent); margin-bottom: 15px; font-weight: 600; }
+        .img-frame img { width: 100%; height: auto; box-shadow: 20px 20px 0px var(--accent); }
+
+        .possibilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 5% 100px; max-width: 1400px; margin: 0 auto; }
+        .pos-card { padding: 40px; background: #fff; border: 1px solid #eee; text-align: center; transition: var(--transition); }
+        .pos-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .pos-card i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* --- WEEKEND & FAQ --- */
+        .weekend-banner { background: var(--ink); margin: 100px 5%; padding: 80px 40px; text-align: center; border-radius: 4px; }
+        .course-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+        .tag { padding: 8px 20px; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .faq-container { max-width: 800px; margin: 50px auto 100px; text-align: left; padding: 0 5%; }
+        .faq-item { border-bottom: 1px solid #eee; padding: 25px 0; }
+        .faq-question { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { margin-top: 15px; color: var(--muted); font-size: 0.95rem; display: none; }
+        .faq-item:hover .faq-answer { display: block; }
+
+        footer { padding: 60px 5%; background: #f4f1ee; text-align: center; }
+
+        /* --- MOBILE MENU SYSTEM --- */
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: var(--bg); flex-direction: column; justify-content: center;
+                align-items: center; gap: 40px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: 2000;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .btn-luxury-nav { display: none; } /* Hide on mobile to declutter */
+            
+            /* Burger Animation */
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            /* Grid Adjustments */
+            .story-section, .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            .story-image img { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Orovie Institute</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html" style="color: var(--accent);">About</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Mission.html">Mission</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="Contact.html" class="btn-luxury-nav">ENQUIRE</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <span class="header-subtitle" data-aos="fade-up">Est. 2010</span>
+        <h1 class="header-title" data-aos="fade-up" data-aos-delay="200">Our Legacy of Excellence</h1>
+    </header>
+
+    <section class="story-section">
+        <div class="story-image" data-aos="fade-right">
+            <img src="https://i.pinimg.com/736x/5f/17/51/5f17515ac4d34e8f9706644222b05260.jpg" alt="Institute Building">
+        </div>
+        <div class="story-content" data-aos="fade-left">
+            <span class="content-label">THE OROVIE STORY</span>
+            <h2>Redefining the Standards of African Hospitality</h2>
+            <p>Founded on the principles of grace, precision, and cultural richness, Orovie Hospitality Institute was established to bridge the gap between traditional service and international luxury standards.</p>
+            <p>For over a decade, we have served as a sanctuary for aspiring hoteliers and experts. Our curriculum is designed to instill a lifestyle of refinement.</p>
+            <p>Today, our alumni lead prestigious establishments globally, carrying with them the "Orovie Mark"—a signature of excellence.</p>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="values-header" data-aos="fade-up">
+            <span class="header-subtitle">Our Foundation</span>
+            <h2 style="font-size: 3rem;">Core Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Impeccable Quality</h3>
+                <p>Every detail, from the fold of a napkin to management, is executed with perfection.</p>
+            </div>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <h3>Ethical Leadership</h3>
+                <p>Integrity is our cornerstone. We cultivate leaders who are honest and professional.</p>
+            </div>
+            <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-leaf"></i>
+                <h3>Cultural Heritage</h3>
+                <p>We celebrate African warmth while teaching world-class luxury standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid-2">
+        <div class="content-side" data-aos="fade-right">
+            <span class="content-label">Our Programs</span>
+            <h2>Certification of Distinction</h2>
+            <p>We offer programs leading to <strong>Certificate, Diploma, and Degree</strong> awards. Our sequential approach ensures a comprehensive journey.</p>
+            <p>Students gain <strong>direct practical experience</strong>, emphasizing work ethics through immersive training sessions.</p>
+        </div>
+        <div class="img-frame" data-aos="fade-left">
+            <img src="https://i.pinimg.com/1200x/42/cb/b6/42cbb6f5f6806184e28a087796e8f0dd.jpg" alt="Students in training">
+        </div>
+    </section>
+
+    <section class="possibilities-grid">
+        <div class="pos-card" data-aos="fade-up">
+            <i class="fa-solid fa-eye"></i>
+            <h3>Vision</h3>
+            <p>Creating a better world through education and professionalism.</p>
+        </div>
+        <div class="pos-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>Mission</h3>
+            <p>Providing future leaders with practical training and cultural awareness.</p>
+        </div>
+        <div class="pos-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-kitchen-set"></i>
+            <h3>90% Practical</h3>
+            <p>Hands-on learning in world-class facilities to ensure job readiness.</p>
+        </div>
+    </section>
+
+  
+
+    <footer>
+        <p>&copy; 2024 Orovie Hospitality Institute. Excellence Refined.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({ duration: 1200, once: true });
+
+        // Hamburger Navigation Logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            // Toggle body scroll
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'initial';
+            }
+        });
+
+        // Auto-close menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'initial';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission | Orovie Hospitality Institute</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #b8926a; 
+            --bg: #fdfcfb;     
+            --ink: #1a1a1a;    
+            --muted: #7a7a7a;
+            --white: #ffffff;
+            --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 30px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: rgba(253, 252, 251, 0.95);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Cormorant Garamond'; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--ink); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--ink); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        
+        /* --- PAGE HEADER --- */
+        .page-header {
+            padding: 200px 5% 100px;
+            text-align: center;
+            background: #f4f1ee;
+        }
+        .header-subtitle { text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+        .header-title { font-size: clamp(3rem, 5vw, 5rem); margin-top: 10px; }
+
+        /* --- MISSION STATEMENTS --- */
+        .mission-container {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .statement-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 120px;
+            align-items: center;
+        }
+
+        .statement-box.reverse { direction: rtl; }
+        .statement-box.reverse .text-content { direction: ltr; }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .text-content span { color: var(--accent); font-weight: 600; font-size: 0.8rem; letter-spacing: 3px; }
+        .text-content h2 { font-size: 2.5rem; margin: 20px 0; }
+        .text-content p { color: var(--muted); font-size: 1.1rem; }
+
+        /* --- PROMISE SECTION --- */
+        .promise-section {
+            background: var(--ink);
+            color: var(--white);
+            padding: 120px 5%;
+            text-align: center;
+        }
+        .promise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .promise-item h3 { font-size: 1.8rem; color: var(--accent); margin-bottom: 15px; }
+        .promise-item p { color: #aaa; font-size: 0.9rem; }
+
+        /* --- CALL TO ACTION --- */
+        .cta-section {
+            padding: 120px 5%;
+            text-align: center;
+            background: var(--bg);
+        }
+        .btn-luxury {
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: 0.4s;
+            margin-top: 30px;
+        }
+        .btn-luxury:hover {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        footer {
+            padding: 60px 5%;
+            background: #f4f1ee;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .statement-box { grid-template-columns: 1fr; gap: 40px; }
+            .promise-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Orovie Hospitality Institute</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Mission.html" style="color: var(--accent);">Mission</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        <a href="Contact.html" class="btn-luxury" style="padding: 10px 20px; margin: 0; font-size: 0.7rem;">ENQUIRE</a>
+    </nav>
+
+    <header class="page-header">
+        <span class="header-subtitle" data-aos="fade-up">Driven by Purpose</span>
+        <h1 class="header-title" data-aos="fade-up" data-aos-delay="200">Mission & Vision</h1>
+    </header>
+
+    <main class="mission-container">
+        <div class="statement-box" data-aos="fade-up">
+            <div class="image-wrapper">
+                <img src="https://i.pinimg.com/1200x/df/4b/12/df4b1252340217ce2d45f0a1e0cd3257.jpg" alt="Mission Vision">
+            </div>
+            <div class="text-content">
+                <span>01. OUR MISSION</span>
+                <h2>Empowering the Next Generation of Global Leaders</h2>
+                <p>To provide future hospitality leaders with the practical training, cultural awareness, and ethical foundation necessary to succeed in a dynamic global industry, while fostering international goodwill through excellence in service.</p>
+            </div>
+        </div>
+
+        <div class="statement-box reverse" data-aos="fade-up">
+            <div class="image-wrapper">
+                <img src="https://i.pinimg.com/1200x/b3/b0/7d/b3b07dde238373f202ca137758b55b5d.jpg" alt="Vision Focus">
+            </div>
+            <div class="text-content">
+                <span>02. OUR VISION</span>
+                <h2>Creating a Better World Through Education</h2>
+                <p>To be the premier institute in Africa recognized globally for transforming lives through education and integrity, affirming the essential need for professional hospitality across all cultures and backgrounds.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="promise-section">
+        <span class="header-subtitle" style="color: var(--accent);">The Orovie Promise</span>
+        <h2 style="font-size: 3rem; margin-top: 10px;">Our Strategic Goals</h2>
+        <div class="promise-grid">
+            <div class="promise-item" data-aos="fade-up" data-aos-delay="100">
+                <h3>Global Competence</h3>
+                <p>Ensuring our graduates are equipped with skills that transcend borders, meeting the standards of the world's most prestigious luxury brands.</p>
+            </div>
+            <div class="promise-item" data-aos="fade-up" data-aos-delay="200">
+                <h3>Practical Mastery</h3>
+                <p>Maintaining a 90% practical learning environment where students "learn by doing" in world-class, simulated hospitality settings.</p>
+            </div>
+            <div class="promise-item" data-aos="fade-up" data-aos-delay="300">
+                <h3>Holistic Growth</h3>
+                <p>Fostering not just professional skills, but personal character, emotional intelligence, and leadership integrity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" data-aos="zoom-in">
+        <span class="header-subtitle">Join Our Community</span>
+        <h2 style="font-size: 2.5rem; margin-top: 15px;">Ready to Start Your Journey?</h2>
+        <p style="max-width: 600px; margin: 20px auto; color: var(--muted);">Step into a world of refinement and professional excellence. Our admissions are open for the upcoming session.</p>
+        <a href="Contact.html" class="btn-luxury">APPLY FOR ADMISSION</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Orovie Hospitality Institute. Excellence Refined.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+    </script>
+</body>
+</html>

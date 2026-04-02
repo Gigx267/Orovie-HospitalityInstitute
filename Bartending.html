@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHIS | The Art of Bartending — Professional Mixology Programme</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png" sizes="32x32">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #c17b4c;     /* rich amber/warmth for mixology */
+            --accent-dark: #a05e36;
+            --bg-dark: #0f0e0c;
+            --bg-card: #1a1714;
+            --ink: #ece5dc;
+            --muted: #bcae9a;
+            --white: #ffffff;
+            --light-beige: #faf6f0;
+            --transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-dark);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: -0.02em; }
+
+        /* --- NAVIGATION (refined, focused on bartending identity) --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 28px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            padding: 18px 5%;
+            background: rgba(15, 14, 12, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(193, 123, 76, 0.2);
+        }
+
+        .logo { 
+            font-size: 1.4rem; 
+            letter-spacing: 2px; 
+            text-decoration: none; 
+            color: var(--ink); 
+            font-weight: 500;
+        }
+        .logo span { color: var(--accent); font-weight: 600;}
+
+        .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            color: var(--ink);
+        }
+
+        /* --- HERO: BARTENDING IMMERSIVE --- */
+        .hero-bartend {
+            min-height: 95vh;
+            padding: 160px 5% 100px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-image: linear-gradient(115deg, rgba(10, 9, 7, 0.92) 0%, rgba(10, 9, 7, 0.75) 100%), 
+                              url('https://i.pinimg.com/1200x/36/75/6c/36756c6d5cef1b05b060ff13ef425dcd.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-subtitle {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(0,0,0,0.4);
+            padding: 6px 14px;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5.8rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .hero-title .accent-text { color: var(--accent); font-weight: 500;}
+
+        .hero-description {
+            font-size: 1rem;
+            color: #e0d6ca;
+            max-width: 520px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .btn-luxury {
+            display: inline-block;
+            padding: 16px 38px;
+            background: var(--accent);
+            color: #0f0e0c;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-luxury:hover { background: #e0945c; transform: translateY(-3px);}
+
+        .btn-outline-light {
+            display: inline-block;
+            padding: 16px 32px;
+            border: 1px solid var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: 0.3s;
+            margin-left: 20px;
+        }
+        .btn-outline-light:hover { background: var(--accent); color: #0f0e0c; border-color: var(--accent);}
+
+        /* stats row */
+        .hero-stats {
+            display: flex;
+            gap: 35px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        .stat-chip {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .stat-chip strong { font-size: 1.6rem; font-family: 'Cormorant Garamond'; color: var(--accent); margin-right: 8px;}
+
+        /* --- CURRICULUM DEEP DIVE (6 weeks focus) --- */
+        .curriculum {
+            padding: 100px 5%;
+            background: var(--bg-dark);
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 70px;
+        }
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            margin-bottom: 20px;
+        }
+        .section-header p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .week-card {
+            background: var(--bg-card);
+            padding: 30px 28px;
+            border-radius: 24px;
+            transition: all 0.3s;
+            border-left: 3px solid var(--accent);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .week-card:hover { transform: translateY(-6px); background: #221f1b; }
+        .week-number {
+            font-family: 'Cormorant Garamond';
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .week-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: -0.2px;
+        }
+        .week-desc {
+            color: #c9bfb0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .skill-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .skill-list li {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skill-list i { color: var(--accent); font-size: 0.7rem;}
+
+        /* --- OUTCOMES SECTION (gains & roles) --- */
+        .outcomes {
+            padding: 100px 5%;
+            background: #12100e;
+        }
+        .outcomes-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            align-items: center;
+        }
+        .outcome-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .outcome-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .outcome-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        .outcome-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        .ideal-roles {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 32px;
+            text-align: center;
+        }
+        .ideal-roles h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        .role-badge {
+            display: inline-block;
+            background: rgba(193, 123, 76, 0.2);
+            padding: 8px 18px;
+            border-radius: 40px;
+            margin: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* --- LIVE SERVICE PROJECT SPOTLIGHT --- */
+        .live-project {
+            padding: 100px 5%;
+            background: linear-gradient(145deg, #1f1b17, #0e0c09);
+            text-align: center;
+        }
+        .project-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 60px 40px;
+            border: 1px solid rgba(193, 123, 76, 0.4);
+        }
+        .project-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .project-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .btn-gold {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 32px;
+            margin-top: 25px;
+        }
+        .btn-gold:hover {
+            background: var(--accent);
+            color: #0f0e0c;
+        }
+
+        /* --- CALL TO ACTION / ENQUIRY --- */
+        .cta-bartend {
+            padding: 80px 5%;
+            text-align: center;
+            background: #0c0b09;
+        }
+        .cta-inner h2 {
+            font-size: 2.8rem;
+        }
+        .cta-buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #080706;
+            text-align: center;
+            padding: 40px 5%;
+            border-top: 1px solid rgba(193, 123, 76, 0.2);
+            font-size: 0.8rem;
+            color: #8f867c;
+        }
+
+        @media (max-width: 992px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-stats { justify-content: center; }
+            .hero-description { margin: 0 auto 30px; }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                height: 100vh; width: 75%;
+                background: #11100e;
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.4s;
+                gap: 35px;
+                border-left: 1px solid var(--accent);
+            }
+            .nav-links.active { right: 0; }
+            .outcomes-grid { grid-template-columns: 1fr; gap: 40px; }
+            .weeks-grid { gap: 20px; }
+        }
+        @media (max-width: 550px) {
+            .hero-actions { display: flex; flex-direction: column; gap: 15px; align-items: center;}
+            .btn-outline-light { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Orovie <span>Bartending</span> • OHIS</a>
+        <ul class="nav-links" id="nav-links">
+              <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Bartending.html">Bartending</a></li>
+            <li><a href="Mission.html">Mission</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION : BARTENDING CRAFT ONLY -->
+    <section class="hero-bartend">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <span class="hero-subtitle">6 Weeks Intensive • Mixology & Bar Mastery</span>
+                <h1 class="hero-title">
+                    Master the <span class="accent-text">Art of Bartending.</span><br>
+                    Elevate Hospitality.
+                </h1>
+                <p class="hero-description">
+                    A focused, professional bartending programme built entirely around drink craftsmanship, premium guest service, bar operations, and career readiness. No other distractions — just pure bar excellence.
+                </p>
+                <div class="hero-actions">
+                  
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-chip"><strong>6</strong> Weeks Intensive</div>
+                    <div class="stat-chip"><strong>240+</strong> Guided Hours</div>
+                    <div class="stat-chip"><strong>100%</strong> Bartending Focus</div>
+                </div>
+            </div>
+            <div class="hero-visual" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Decorative element: abstract bar silhouette -->
+              
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM: 6 WEEKS DETAILED (drinks, technique, operations) -->
+    <section id="curriculum" class="curriculum">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Course at a glance: <span style="color: var(--accent);">6‑week bar mastery</span></h2>
+            <p>From bar basics to advanced mixology, live service simulations, and operational readiness — every week builds real-world bartending competence.</p>
+        </div>
+        <div class="weeks-grid">
+            <div class="week-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="week-number">Week 1</div>
+                <div class="week-title">Bar basics & safety</div>
+                <div class="week-desc">Bar stations, tools, glassware, setup discipline. Hygiene standards, responsible service principles, and opening/closing procedures.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Bar equipment familiarization</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Mise en place & workflow</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Safety & responsible serving</li>
+                </ul>
+            </div>
+            <div class="week-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="week-number">Week 2</div>
+                <div class="week-title">Classic cocktails & technique</div>
+                <div class="week-desc">Shaking, stirring, layering, measuring, garnishing. Core cocktail families (Margarita, Old Fashioned, Negroni) and menu standards.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Accuracy & speed drills</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Balance & flavor profiling</li>
+                </ul>
+            </div>
+            <div class="week-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="week-number">Week 3</div>
+                <div class="week-title">Advanced mixology</div>
+                <div class="week-desc">Signature drinks, menu creativity, spirits knowledge, beverage pairing. Mocktails & alcohol-free service options.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Infusions & house syrups</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Modernist techniques</li>
+                </ul>
+            </div>
+            <div class="week-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="week-number">Week 4</div>
+                <div class="week-title">Guest service at the bar</div>
+                <div class="week-desc">Professional communication, VIP behaviour, upselling, team coordination. Premium hospitality etiquette for high-end lounges.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Reading guests & personalisation</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Conflict resolution & service recovery</li>
+                </ul>
+            </div>
+            <div class="week-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="week-number">Week 5</div>
+                <div class="week-title">Bar operations & control</div>
+                <div class="week-desc">Inventory, stock awareness, basic costing, workflow during peak service. Operational discipline for bars, lounges, and events.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Pour cost & waste management</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Beverage procurement basics</li>
+                </ul>
+            </div>
+            <div class="week-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="week-number">Week 6</div>
+                <div class="week-title">Live assessment & readiness</div>
+                <div class="week-desc">Practical service simulations, final drink & service assessments, career preparation for hospitality roles.</div>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-check-circle"></i> Speed round challenge</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Portfolio & interview prep</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTCOMES + IDEAL ROLES (career focus) -->
+    <section id="outcomes" class="outcomes">
+        <div class="outcomes-grid">
+            <div class="outcome-list" data-aos="fade-right">
+                <h2 style="font-size: 2.8rem; margin-bottom: 25px;">What students gain</h2>
+                <div class="outcome-item">
+                    <div class="outcome-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                    <div class="outcome-text"><h4>Confidence behind a professional bar station</h4><p>Master speed, technique, and presence in any environment.</p></div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon"><i class="fa-solid fa-cocktail"></i></div>
+                    <div class="outcome-text"><h4>Strong cocktail & beverage preparation skills</h4><p>Classics, signature creations, and non-alcoholic alternatives.</p></div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="outcome-text"><h4>Guest-facing service excellence</h4><p>Elevate every guest interaction with refined etiquette.</p></div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="outcome-text"><h4>Bar operations & workflow awareness</h4><p>Inventory control, costing, team coordination.</p></div>
+                </div>
+            </div>
+            <div class="ideal-roles" data-aos="fade-left">
+                <h3>Ideal for</h3>
+                <div>
+                    <span class="role-badge"><i class="fa-solid fa-wine-bottle"></i> Aspiring bartenders</span>
+                    <span class="role-badge"><i class="fa-solid fa-utensils"></i> Hospitality workers seeking specialization</span>
+                    <span class="role-badge"><i class="fa-solid fa-champagne-glasses"></i> Event & lounge service staff</span>
+                    <span class="role-badge"><i class="fa-solid fa-hotel"></i> Hotels & employers needing better-trained bar talent</span>
+                    <span class="role-badge"><i class="fa-solid fa-mixer"></i> Mixology enthusiasts</span>
+                </div>
+                <hr style="margin: 30px 0; border-color: #362e26;">
+                <p style="font-size: 0.9rem;">Graduates are ready for immediate placement in cocktail bars, luxury hotels, cruise lines, and private member clubs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE SERVICE PROJECT SECTION -->
+    <section id="project" class="live-project">
+        <div class="project-card" data-aos="zoom-in">
+            <i class="fa-solid fa-handshake"></i>
+            <h3>Live Service Project</h3>
+            <p style="max-width: 700px; margin: 0 auto 25px; font-size: 1rem;">Every student participates in a real-world bartending activation — from designing a pop-up cocktail menu to serving guests under pressure. You'll manage a full bar shift, interact with VIPs, and demonstrate operational excellence before graduation.</p>
+            <p><strong>Industry assessment | Guest feedback | Career portfolio entry</strong></p>
+            <a href="Contact.html" class="btn-luxury btn-gold" style="display: inline-block; margin-top: 30px;">Apply for the next cohort →</a>
+        </div>
+    </section>
+
+   
+
+    <footer>
+        <p>© 2025 Orovie Hospitality Institute — Bartending Division. Pure Craft. Elevated Service.</p>
+        <p style="margin-top: 8px; font-size: 0.7rem;">Professional Mixology & Bar Operations Programme | Excellence Refined</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 60) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                if(icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
+            });
+        });
+    </script>
+</body>
+</html>
